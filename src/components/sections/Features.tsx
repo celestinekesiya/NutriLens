@@ -114,7 +114,7 @@ export default function Features() {
           </span>
         </h3>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-8">
+        <div className="mt-8 flex flex-wrap justify-center gap-8" style={{ color: "var(--accent-red)" }}>
           <div className="font-mono-editorial" style={{ fontSize: "0.75rem" }}>
             <span className="red-paren">(</span> PRIVACY FOCUSED{" "}
             <span className="red-paren">)</span>

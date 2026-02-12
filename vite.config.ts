@@ -23,12 +23,12 @@ export default defineConfig({
       },
     },
   },
-  server: {
-    headers: {
-      'Content-Type': 'text/css; charset=utf-8',
-    },
-    middlewareMode: false,
-  },
+  // server: {
+  //   headers: {
+  //     'Content-Type': 'text/css; charset=utf-8',
+  //   },
+  //   middlewareMode: false,
+  // },
   preview: {
     headers: {
       'Content-Type': 'text/css; charset=utf-8',

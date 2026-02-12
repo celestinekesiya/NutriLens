@@ -1,5 +1,7 @@
-import { Menu, X, Key } from "lucide-react";
+import { Menu, X, Key, Palette } from "lucide-react";
 import { useState } from "react";
+import ColorThemeModal from "../ui/ColorThemeModal";
+import { useColorTheme } from "../../hooks/useColorTheme";
 
 interface NavbarProps {
   onApiKeyClick: () => void;
@@ -8,6 +10,8 @@ interface NavbarProps {
 
 export default function Navbar({ onApiKeyClick, hasApiKey }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [themeModalOpen, setThemeModalOpen] = useState(false);
+  const { currentTheme, changeTheme } = useColorTheme();
 
   return (
     <nav className="relative z-50 w-full" style={{ backgroundColor: "var(--bg-color)" }}>
@@ -34,8 +38,16 @@ export default function Navbar({ onApiKeyClick, hasApiKey }: NavbarProps) {
             LENS
           </a>
 
-          {/* Right: API key + arrow */}
+          {/* Right: theme + API key + arrow */}
           <div className="hidden items-center gap-4 sm:flex">
+            <button
+              onClick={() => setThemeModalOpen(true)}
+              className="nav-pill"
+              title="Change theme colors"
+            >
+              <Palette size={12} />
+              Theme
+            </button>
             <button
               onClick={onApiKeyClick}
               className={`nav-pill ${hasApiKey ? "nav-pill--active" : ""}`}
@@ -61,7 +73,7 @@ export default function Navbar({ onApiKeyClick, hasApiKey }: NavbarProps) {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="nav-pill sm:hidden"
+            className="nav-pill flex sm:!hidden"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X size={16} /> : <Menu size={16} />}
@@ -99,6 +111,16 @@ export default function Navbar({ onApiKeyClick, hasApiKey }: NavbarProps) {
             <button
               onClick={() => {
                 setMobileOpen(false);
+                setThemeModalOpen(true);
+              }}
+              className="nav-pill w-full justify-center"
+            >
+              <Palette size={12} />
+              Theme
+            </button>
+            <button
+              onClick={() => {
+                setMobileOpen(false);
                 onApiKeyClick();
               }}
               className={`nav-pill w-full justify-center ${hasApiKey ? "nav-pill--active" : ""}`}
@@ -116,6 +138,14 @@ export default function Navbar({ onApiKeyClick, hasApiKey }: NavbarProps) {
           </div>
         </div>
       )}
+
+      {/* Color Theme Modal */}
+      <ColorThemeModal
+        open={themeModalOpen}
+        onClose={() => setThemeModalOpen(false)}
+        currentTheme={currentTheme}
+        onThemeChange={changeTheme}
+      />
     </nav>
   );
 }

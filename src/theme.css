@@ -7,8 +7,8 @@
 
 :root {
   --bg-color: #E6E6E6;
-  --text-color: #111111;
-  --accent-red: #CC3333;
+  --text-color: #006110;
+  --accent-red: #f31515;
   --border-color: #111111;
   --grain-opacity: 0.08;
 }
@@ -160,7 +160,7 @@ body {
    ══════════════════════════════════════════════════════════ */
 
 .hero-section {
-  padding: 4rem 0 8rem 0;
+  padding: 4rem 0 6rem 0;
   position: relative;
 }
 
@@ -198,20 +198,22 @@ body {
   transform: scale(1.05) rotate(-2deg);
 }
 
-.hero-sub-bottom {
-  margin-top: 2rem;
-  max-width: 300px;
-  text-align: left;
-  position: absolute;
-  left: 5%;
-  bottom: -36%;
-  z-index: 10;
+.hero-tagline {
+  font-family: 'Roboto Mono', monospace;
+  text-transform: uppercase;
+  font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+  letter-spacing: 0.12em;
+  color: var(--accent-red);
+  white-space: nowrap;
+  margin-top: 1.5rem;
+  text-align: center;
+  width: 100%;
 }
 
 .hero-cta-bottom {
   position: absolute;
   right: 5%;
-  bottom: -10%;
+  bottom: -36%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -315,12 +317,62 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════════
-   EDITORIAL UPLOAD ZONE
+   UPLOAD SECTION – HIGH-CONTRAST DARK BAND
    ══════════════════════════════════════════════════════════ */
 
+.upload-section {
+  background: var(--text-color);
+  color: var(--bg-color);
+  position: relative;
+}
+
+.upload-section h2,
+.upload-section p {
+  color: var(--bg-color) !important;
+}
+
+.upload-section .font-mono-editorial {
+  color: var(--bg-color) !important;
+}
+
+/* ── Chef peeking SVG ── */
+
+.chef-peek {
+  position: absolute;
+  top: -68px;
+  right: 5%;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chef-label {
+  display: block;
+  font-size: 0.55rem !important;
+  letter-spacing: 0.1em;
+  color: var(--bg-color) !important;
+  margin-top: 2px;
+  opacity: 0.7;
+}
+
+.chef-wave {
+  transform-origin: 20px 58px;
+  animation: wave 1.4s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-12deg); }
+  50% { transform: rotate(8deg); }
+  75% { transform: rotate(-8deg); }
+}
+
+/* ── Upload dropzone ── */
+
 .upload-zone {
-  border: 1px solid var(--border-color);
-  background: transparent;
+  border: 2px dashed rgba(230, 230, 230, 0.4);
+  background: rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
@@ -328,15 +380,17 @@ body {
 
 .upload-zone:hover {
   border-color: var(--accent-red);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .upload-zone--drag-active {
   border-color: var(--accent-red);
-  background: rgba(204, 51, 51, 0.03);
+  background: rgba(204, 51, 51, 0.12);
 }
 
 .upload-zone--has-preview {
   cursor: default;
+  border-style: solid;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -366,13 +420,11 @@ body {
     display: none;
   }
 
-  .hero-sub-bottom {
-    position: relative;
-    left: 0;
-    bottom: 0;
-    max-width: 100%;
+  .hero-tagline {
+    white-space: normal;
     text-align: center;
-    margin-top: 3rem;
+    font-size: 0.6rem;
+    margin-top: 1.5rem;
   }
 
   .hero-cta-bottom {
@@ -387,12 +439,16 @@ body {
     display: none;
   }
 
+  .chef-peek {
+    display: none;
+  }
+
   .card-floater {
     display: none;
   }
 
   .hero-section {
-    padding: 2rem 0 4rem 0;
+    padding: 2rem 0 3rem 0;
   }
 }
 

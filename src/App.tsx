@@ -11,6 +11,7 @@ import ApiKeyModal from "./components/ui/ApiKeyModal";
 import { ToastContainer, toast } from "./components/ui/Toast";
 import { analyzeImage, getStoredApiKey } from "./services/gemini";
 import { saveToHistory, fileToDataUrl } from "./services/history";
+import { useColorTheme } from "./hooks/useColorTheme";
 import { isAnalysisError } from "./types";
 import type { AnalysisResult } from "./types";
 
@@ -21,6 +22,9 @@ export default function App() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [apiKey, setApiKey] = useState<string | null>(null);
   const [showKeyModal, setShowKeyModal] = useState(false);
+
+  // Initialize color theme
+  useColorTheme();
 
   // Load stored API key on mount
   useEffect(() => {
@@ -121,9 +125,53 @@ export default function App() {
       <main className="flex-1">
         <Hero />
 
-        {/* Divider before upload */}
-        <div className="mx-auto max-w-[1400px] px-8">
-          <div className="editorial-divider" />
+        {/* Chef character peeking from top-right, visually outside sec 2 but part of it */}
+        <div className="chef-peek">
+          <svg
+            width="72"
+            height="88"
+            viewBox="0 0 72 88"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Chef toque (hat) */}
+            <ellipse cx="36" cy="14" rx="18" ry="12" fill="var(--bg-color)" stroke="var(--text-color)" strokeWidth="1.5" />
+            <ellipse cx="28" cy="10" rx="8" ry="9" fill="var(--bg-color)" stroke="var(--text-color)" strokeWidth="1.5" />
+            <ellipse cx="44" cy="10" rx="8" ry="9" fill="var(--bg-color)" stroke="var(--text-color)" strokeWidth="1.5" />
+            <ellipse cx="36" cy="8" rx="7" ry="8" fill="var(--bg-color)" stroke="var(--text-color)" strokeWidth="1.5" />
+            {/* Hat band */}
+            <rect x="20" y="18" width="32" height="6" rx="1" fill="var(--accent-red)" />
+            {/* Face */}
+            <rect x="20" y="24" width="32" height="28" rx="5" fill="var(--bg-color)" stroke="var(--text-color)" strokeWidth="1.5" />
+            {/* Eyes */}
+            <circle cx="30" cy="36" r="2.5" fill="var(--text-color)">
+              <animate attributeName="cy" values="36;34;36" dur="3s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="42" cy="36" r="2.5" fill="var(--text-color)">
+              <animate attributeName="cy" values="36;34;36" dur="3s" repeatCount="indefinite" />
+            </circle>
+            {/* Cheeks */}
+            <circle cx="25" cy="42" r="3" fill="var(--accent-red)" opacity="0.3" />
+            <circle cx="47" cy="42" r="3" fill="var(--accent-red)" opacity="0.3" />
+            {/* Smile */}
+            <path d="M31 44 Q36 49 41 44" stroke="var(--text-color)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+            {/* Body / apron */}
+            <rect x="22" y="52" width="28" height="36" rx="3" fill="var(--bg-color)" stroke="var(--text-color)" strokeWidth="1.5" />
+            {/* Apron pocket */}
+            <rect x="29" y="62" width="14" height="8" rx="2" fill="none" stroke="var(--accent-red)" strokeWidth="1" />
+            {/* Fork arm (waving) */}
+            <g className="chef-wave">
+              <line x1="20" y1="58" x2="6" y2="40" stroke="var(--text-color)" strokeWidth="2" strokeLinecap="round" />
+              {/* Fork */}
+              <line x1="6" y1="40" x2="6" y2="24" stroke="var(--text-color)" strokeWidth="1.5" strokeLinecap="round" />
+              <line x1="3" y1="28" x2="3" y2="24" stroke="var(--text-color)" strokeWidth="1.5" strokeLinecap="round" />
+              <line x1="6" y1="28" x2="6" y2="24" stroke="var(--text-color)" strokeWidth="1.5" strokeLinecap="round" />
+              <line x1="9" y1="28" x2="9" y2="24" stroke="var(--text-color)" strokeWidth="1.5" strokeLinecap="round" />
+            </g>
+            {/* Other arm */}
+            <line x1="50" y1="58" x2="60" y2="66" stroke="var(--text-color)" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+          <span className="chef-label font-mono-editorial">BON APPÉTIT!</span>
         </div>
 
         <ImageUploader

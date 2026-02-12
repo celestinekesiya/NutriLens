@@ -27,15 +27,6 @@ export default function Hero() {
     <section ref={sectionRef} className="hero-section">
       <div className="mx-auto max-w-[1400px] px-8 relative">
         {/* Floating stats */}
-        <div className="floating-stat fs-1">
-          <span className="red-paren">(</span> AI-POWERED ANALYSIS{" "}
-          <span className="red-paren">)</span>
-        </div>
-        <div className="floating-stat fs-2">
-          <span className="red-paren">(</span> AI VISION{" "}
-          <span className="red-paren">)</span>
-        </div>
-
         {/* Main headline */}
         <div className="hero-headline font-condensed">
           <div className="hero-line-block">
@@ -55,33 +46,15 @@ export default function Hero() {
             />
             <span>INTELLIGENCE</span>
           </div>
+          <div className="hero-tagline">
+            UPLOAD AN IMAGE — GET MACROS INSTANTLY — AI-POWERED NUTRITION ANALYSIS
+          </div>
         </div>
 
-        {/* Subtitle – bottom left, overlapping */}
-        <div className="hero-sub-bottom">
-          <p
-            className="font-mono-editorial"
-            style={{ lineHeight: 1.6, marginBottom: "1rem" }}
-          >
-            Upload an image. Get macros instantly. We turn pixels into
-            nutritional data points using AI-powered analysis algorithms.
-          </p>
-          <div
-            className="editorial-divider"
-            style={{ width: 50, marginBottom: "1rem" }}
-          />
-          <p
-            className="font-mono-editorial"
-            style={{ fontSize: "0.7rem", opacity: 0.7 }}
-          >
-            POWERED BY: AI
-            <br />
-            FORMAT: CALORIES + MACROS
-          </p>
-        </div>
+
 
         {/* CTA – bottom right, overlapping */}
-        <div className="hero-cta-bottom">
+        {/* <div className="hero-cta-bottom">
           <a href="#upload" className="cta-button">
             Upload Image
           </a>
@@ -96,16 +69,9 @@ export default function Hero() {
             <span className="red-paren">(</span> DRAG &amp; DROP SUPPORTED{" "}
             <span className="red-paren">)</span>
           </p>
-        </div>
+        </div> */}
 
-        {/* Floating food image */}
-        <img
-          src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?q=80&w=1000&auto=format&fit=crop"
-          className="card-floater cf-1"
-          alt="Food Texture"
-        />
       </div>
     </section>
   );
 }
-
